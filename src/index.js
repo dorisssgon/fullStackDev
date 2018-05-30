@@ -1,29 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import {createStore, applyMiddleware, compose} from 'redux'
-import {Provider} from 'react-redux'
-import thunk from 'redux-thunk'
-import {BrowserRouter, Route, Link,Switch,Redirect} from 'react-router-dom'
-import Auth from "./Auth";
-import Dashborad from "./Dashborad";
-import {counter} from "./store.js"
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
+import reducers from './reducer'
+import './config'
+import Login from './container/login/login.js';
+import Register from './container/register/register.js';
+import AuthRoute from './component/authroute/authroute.js';
 
-const store = createStore(counter, compose(
-    applyMiddleware(thunk)),
-    window.devToolExtension?window.devToolExtension():f=>f
-)
-   
-
+const store = createStore(reducers, compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension?window.devToolsExtension():f=>f
+))
+function Boss(){
+   return <h2>Boss page</h2>
+}
 ReactDOM.render(
-     <Provider store={store}>
+    (<Provider store={store}>
         <BrowserRouter>
-            <Switch>
-             <Route path="/login"exact component={Auth} ></Route>
-             <Route path="/dashboard" component={Dashborad} ></Route>
-             <Redirect to="/dashboard"></Redirect>
-            </Switch>
+           <div>
+               <AuthRoute></AuthRoute>
+               <Route path='/boss' component={Boss}></Route>
+               <Route path="/login" component={Login}></Route>
+               <Route path="/register" component={Register}></Route>
+            </div>
         </BrowserRouter>
-    </Provider>, 
-    document.getElementById('root'));
+    </Provider>)
+, document.getElementById('root'));
+
