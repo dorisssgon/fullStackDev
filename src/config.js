@@ -1,15 +1,12 @@
-import axios from 'axios'
-import { Toast } from  'antd-mobile'
-//interceptors request
+import axios from 'axios';
+import {Toast} from 'antd-mobile';
+//interceptor request
 axios.interceptors.request.use(function(config){
-    Toast.loading('loading...', 0)
+    Toast.loading('Loading...',0)
     return config
 })
-
-//interceptors response
+// interceptor  response
 axios.interceptors.response.use(function(config){
-    setTimeout(()=>{
-        Toast.hide()
-    },2000)
+        Toast.hide();
     return config
 })
