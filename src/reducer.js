@@ -1,3 +1,6 @@
-import {combineReducers} from 'redux';
 
-export default combineReducers({});
+//合并 所有reducer 并且返回
+import {combineReducers} from 'redux';
+import {user} from './redux/user.redux';
+
+export default combineReducers({user});

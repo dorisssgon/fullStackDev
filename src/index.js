@@ -9,7 +9,7 @@ import './config'
 import Login from './container/login/login.js';
 import Register from './container/register/register.js';
 import AuthRoute from './component/authroute/authroute.js';
-
+import './index.css';
 const store = createStore(reducers, compose(
     applyMiddleware(thunk),
     window.devToolsExtension?window.devToolsExtension():f=>f

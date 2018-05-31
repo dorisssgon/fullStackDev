@@ -1,9 +1,15 @@
-const express = require('express')
-const userRouter = require('./user')
+const express = require('express');
+const utils = require('utility');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const userRouter = require('./user');
 const app = express();
 //开启中间件，中间件可以使路由
-app.use('/user',userRouter);
 
+app.use(cookieParser());
+//可以解析post过来的数据
+app.use(bodyParser.json());
+app.use('/user',userRouter);
 // create an app
 
 app.listen(9093,function(){
